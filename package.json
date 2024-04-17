@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd-mobile": "^5.35.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "indexof": "^0.0.1",
