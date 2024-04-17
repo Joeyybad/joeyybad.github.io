@@ -1,35 +1,60 @@
-@import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Knewave&display=swap');
+
+/***********  Color Var and Police ***********/
+:root {
+
+    --bg-light: #FFFFFF;
+    --bg-light-grey: #D9D9D9;
+    --bg-blue:#0064A3;
+    --bg-darkblue: #163760;
+    --bg-darkred: #A30000;
+    --bg-green: #5CD451;
+    --bg-black: #000000;
+    --title-font: "Knewave", system-ui;
+    --main-font: "Inria", sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/*********** General Style for all page ***********/
+/* main{
+    text-align: center;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    width: auto;
+} */
+body{
+    background-color: var(--bg-light) ;
+}
+.navStyle {
+    background-color: var(--bg-light-grey);
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.footerStyle {
+    background-color: var(--bg-darkblue);
+    color: var(--bg-light);
+}
+.lightFont{
+    color: var(--bg-light);
+}
+/* Class for nav items */
+.Knewave{
+    font-family: "Knewave";
+    font-size: 20px;
+    color: var(--bg-black)
+}
+h1{
+    font-family: "Knewave";
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+p{
+    font-family: "Inria", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 18px;
 }
