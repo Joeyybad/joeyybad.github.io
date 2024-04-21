@@ -17,13 +17,10 @@
 }
 
 /*********** General Style for all page ***********/
-/* main{
-    text-align: center;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh;
-    width: auto;
-} */
+ main{
+    margin:  0;
+    height: 100%;
+} 
 body{
     background-color: var(--bg-light) ;
 }
@@ -34,16 +31,21 @@ body{
 .footerStyle {
     background-color: var(--bg-darkblue);
     color: var(--bg-light);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 .lightFont{
     color: var(--bg-light);
 }
+
 /* Class for nav items */
 .Knewave{
     font-family: "Knewave";
     font-size: 20px;
     color: var(--bg-black)
 }
+
 h1{
     font-family: "Knewave";
     font-optical-sizing: auto;
@@ -56,5 +58,102 @@ p{
     font-family: "Inria", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 18px;
 }
+
+/* error class for front end errors handler */
+.error{
+    margin-top: 0px;
+    font-size: .75rem;
+    color: red;
+    margin-bottom: 10px;
+}
+
+/************* CSS Button event home page  *****************/
+.container {
+    display: flex;
+    position: relative;
+  }
+  
+  .button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    padding: .5em 1.5em;
+    font-size: 25px;
+    font-weight: 600;
+    color: #0064A3;
+    transition: all .3s ease;
+  }
+  
+  .arrow {
+    fill: #94a1b2;
+    position: absolute;
+    pointer-events: none;
+    width: 24px;
+    right: 0;
+    top: 25%;
+    transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  
+  .button:hover {
+    letter-spacing: 2px;
+  }
+  
+  .button:hover ~.second {
+    opacity: .66;
+    right: -20px;
+    transition-delay: 50ms;
+  }
+  
+  .button:hover ~.third {
+    opacity: .33;
+    right: -40px;
+    transition-delay: 100ms;
+  }
+  
+  .second, 
+  .third {
+    opacity: 0;
+  }
+
+/**************** End CSS Button event *****************/
+
+
+/**************** CSS Research input ******************/
+
+.search {
+    display: inline-block;
+    position: relative;
+    margin-left: 6px;
+  }
+  
+  .search input[type="text"] {
+    width: 400px;
+    padding: 9px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search button[type="submit"] {
+    background-color: #4e99e9;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: -3px;
+    right: 0;
+    transition: .9s ease;
+  }
+  
+  .search button[type="submit"]:hover {
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    background-color: blue;
+  }
+  
+  /**************** End CSS Research input *****************/

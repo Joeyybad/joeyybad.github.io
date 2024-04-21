@@ -5,21 +5,21 @@
                 <a class="navbar-brand" href="/"><img
                         src="../assets/image/LogoBreakFranceAppli-removebg-preview-removebg-preview.png"
                         alt="logo BreakFrance" />BreakFrance</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon buttonToggle"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/FAQ">FAQ</a>
+                            <router-link :to="{name:'FAQ'}" class="nav-link" >FAQ</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/"><i class="bi bi-house"></i>Home</a>
+                            <router-link :to="{name:'Home'}" class="nav-link"><i class="bi bi-house"></i>Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="">S'inscrire</a>
+                            <router-link :to="{name:'Register'}" class="nav-link" >S'inscrire</router-link>
                         </li>
 
                         <li class='nav-item '>
@@ -28,8 +28,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-info" href=""> <i class="bi bi-box-arrow-in-left text-info"></i>Se
-                                connecter</a>
+                            <router-link :to="{name:'Login'}" class="nav-link" href=""> <i class="bi bi-box-arrow-in-left"></i>Se
+                                connecter</router-link>
                         </li>
 
 
@@ -70,8 +70,23 @@
 
 <style>
 img {
-    width: 80px;
+    width: 65px;
     height: auto;
     margin: 2px;
 }
+.navbar-brand{
+    color: #163760;
+    text-shadow: 2px 2px 2px white;
+}
+
+.navbar-nav .nav-item a.router-link-active:hover{
+    color :#0064A3;
+    
+}
+.navbar-nav .nav-item a.router-link-exact-active{
+ color: #16a5c9;
+}
 </style>
+
+
+
