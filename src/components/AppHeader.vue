@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navStyle sticky-top mb-2 Knewave">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"><img
-                        src="../assets/image/LogoBreakFranceAppli-removebg-preview-removebg-preview.png"
+                        src="../assets/image/LogoBreakFranceAppli-removebg-preview-removebg-preview.webp"
                         alt="logo BreakFrance" />BreakFrance</a>
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

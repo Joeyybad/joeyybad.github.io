@@ -1,32 +1,30 @@
 <template>
-    <main class="container">
-        <form class="form">
-            <div class="d-flex justify-content-center align-items-center">
-                <p class="title">Connexion</p>
-            </div>
-            <p class="message">Connecte-toi ! <i
-                    class="bi bi-emoji-grin text-warning fs-5"></i></p>
+    <main class="container" aria-labelledby="form-title">
+    <form class="form">
+        <div class="d-flex justify-content-center align-items-center">
+            <p id="form-title" class="title">Connexion</p>
+        </div>
+        <p class="message">Connecte-toi ! <i
+                class="bi bi-emoji-grin text-warning fs-5"></i></p>
 
-                <label>
-                    <span>Email</span>
-                    <input class="input" id="email" name="email" type="email" placeholder="">
-                    
-                </label>
+        <label for="email">
+            <span>Email</span>
+            <input class="input" id="email" name="email" type="email" placeholder="" aria-label="Email">
+        </label>
 
-                <label>
-                    <span>Mot de passe</span>
-                    <input class="input"  id="password" name="password" type="password" placeholder="">
-                    
-                </label>
+        <label for="password">
+            <span>Mot de passe</span>
+            <input class="input" id="password" name="password" type="password" placeholder="" aria-label="Mot de passe">
+        </label>
 
-                <button class="submit" v-on:click="loginCheck">Submit</button>
-                <p class="signin">Pas encore inscrit ? <router-link :to="{name:'Register'}">Incris-toi!</router-link></p>
-        </form>
-    </main>
+        <button class="submit mt-2" v-on:click="loginCheck">Valider</button>
+        <p class="signin">Pas encore inscrit ? <router-link :to="{name:'Register'}">Incris-toi!</router-link></p>
+    </form>
+</main>
 </template>
 
 <script setup>
-import { loginCheck,resetErrors, error } from '@/assets/script.js/LoginCheck'
+import {loginCheck} from '@/assets/script.js/LoginCheck'
 
 </script>
 

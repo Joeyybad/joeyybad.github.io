@@ -21,7 +21,7 @@
 
             </div>
             <div class="col-3 text-end">
-                <a class="navbar-brand" href="/"><img src="../assets/image/BreakFranceLogoFooter-removebg-preview (1).png"
+                <a class="navbar-brand" href="/"><img src="../assets/image/BreakFranceLogoFooter-removebg-preview (1).webp"
                         alt="logo BreakFrance" /></a>
                 <a class="nav-link" href="#">&copy;Breakfrance</a>
             </div>

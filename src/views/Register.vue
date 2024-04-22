@@ -1,29 +1,30 @@
 <template>
-  <main class="container">
+  <main class="container" aria-labelledby="form-title">
     <form class="form">
       <div class="d-flex justify-content-center align-items-center">
-        <p class="title">Inscription</p>
+        <p id="form-title" class="title">Inscription</p>
       </div>
       <p class="message">Inscris toi maintenant pour avoir accès au site ! <i
           class="bi bi-emoji-grin text-warning fs-5"></i></p>
       <div class="flex">
-        <label>
+        <label for="firstname">
           <span>Prénom</span>
-          <input class="input" id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom">
+          <input class="input" id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom"
+            aria-label="Prénom">
         </label>
 
-        <label>
+        <label for="lastname">
           <span>Nom</span>
-          <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom">
+          <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom" aria-label="Nom">
         </label>
       </div>
 
-      <label>
+      <label for="email">
         <span>Email</span>
-        <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email">
+        <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email" aria-label="Email">
       </label>
 
-      <label>
+      <label for="postal-code">
         <span>Code Postal</span>
         <input class="input" type="text" id="postal-code" name="postal-code" aria-label="Code Postal" required>
       </label>
@@ -34,16 +35,18 @@
         <option value=""></option>
       </select>
 
-      <label>
+      <label for="password">
         <span>Mot de passe</span>
-        <input class="input" id="password" name="password" type="password" placeholder=" Entrez votre mot de passe">
+        <input class="input" id="password" name="password" type="password" placeholder=" Entrez votre mot de passe"
+          aria-label="Mot de passe">
       </label>
-      <label>
+      <label for="confPassword">
         <span>Confirm password</span>
-        <input class="input" id="confPassword" name="confPassword" type="password" placeholder=" Confirmez votre mot de passe">
+        <input class="input" id="confPassword" name="confPassword" type="password"
+          placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
       </label>
-      <button class="submit mt-2" v-on:click="registerCheck">Submit</button>
-      <p class="signin">Déjà inscrit ? <router-link :to="{name:'Login'}">Connecte-toi</router-link></p>
+      <button class="submit mt-2" v-on:click="registerCheck">Valider</button>
+      <p class="signin">Déjà inscrit ? <router-link :to="{ name: 'Login' }">Connecte-toi</router-link></p>
     </form>
   </main>
 </template>
@@ -54,7 +57,6 @@ import { registerCheck } from '@/assets/script.js/RegisterCheck';
 </script>
 
 <style scoped>
-
 /**********  CSS Registration Form  **********/
 
 .container {
@@ -171,6 +173,7 @@ import { registerCheck } from '@/assets/script.js/RegisterCheck';
   background-color: rgb(56, 90, 194);
   cursor: pointer;
 }
+
 /**********  END CSS Registration Form  **********/
 
 
@@ -190,5 +193,4 @@ import { registerCheck } from '@/assets/script.js/RegisterCheck';
     box-shadow: 9px 9px 18px -1px rgba(46, 46, 46, 0.9);
   }
 
-}
-</style>
+}</style>
