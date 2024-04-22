@@ -5,10 +5,10 @@
                 <h1>Mon compte</h1>
             </div>
             <div class="row">
-                <div class="col-2">
-                    <img src="" alt="" class="col-12">
+                <div class="col-4 col-sm-10">
+                    <img src="" alt="" class="">
                 </div>
-                <div class="col-2">
+                <div class="col-4">
                     <h3> Prénom :
                     </h3>
                     <div class="row">
@@ -21,15 +21,13 @@
                         <h3> Ville : </h3>
                     </div>
                 </div>
-                <div class="col-4">
-                    <button class="submit btn btn-outline-primary" v-on:click="toggleModale(true)"><i class="bi bi-pen fs-1"></i></button>
+                <div class="col-4 col-sm-2">
+                    <button class="submit btn btn-outline-primary" v-on:click="toggleModale(true)"><i
+                            class="bi bi-pen fs-1"></i></button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <modale v-bind:revele="revele" v-on:update:revele="revele = $event"></modale>
-                </div>
-            </div>
+            <modale v-bind:revele="revele" v-on:update:revele="revele = $event"></modale>
+
         </div>
     </main>
 </template>
@@ -54,15 +52,16 @@ export default {
 
 
 <style>
-main{
+main {
     height: 80vh;
 
 }
- .submit {
-color: #0064A3;
-border: none;
-background-color: white;
-} 
+
+.submit {
+    color: #0064A3;
+    border: none;
+    background-color: white;
+}
 
 /* .submit:hover {
   background-color: rgb(56, 90, 194);

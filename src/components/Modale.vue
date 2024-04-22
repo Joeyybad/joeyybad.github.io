@@ -63,4 +63,18 @@ export default {
     top: 10px;
     right: 10px;
 }
+
+@media screen and (max-width: 812px) {
+    .modale{
+    background: #f1f1f1;
+    color: #333;
+    width: 350px;
+    height: 400px;
+    padding: 50px;
+    position: fixed;
+    top: 25%;
+}
+
+}
+
 </style>
