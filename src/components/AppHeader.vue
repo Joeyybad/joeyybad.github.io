@@ -28,16 +28,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link :to="{name:'Login'}" class="nav-link" href=""> <i class="bi bi-box-arrow-in-left"></i>Se
+                            <router-link :to="{name:'Login'}" class="nav-link"> <i class="bi bi-box-arrow-in-left"></i>Se
                                 connecter</router-link>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="">Evènements</a>
+                            <router-link :to="{name:'Eventlist'}" class="nav-link">Evènements</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="">Groupes</a>
+                            <router-link :to="{name:'Grouplist'}" class="nav-link">Groupes</router-link>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -45,12 +45,12 @@
                                 Administration
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-dark" href="">Créer un article</a></li>
-                                <li><a class="dropdown-item text-dark" href="">Liste utilisateur</a></li>
+                                <li><a class="dropdown-item text-dark" href="">Créer un Evènement</a></li>
+                                <li><a class="dropdown-item text-dark" href="">Créer un groupe de danse</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item text-dark" href="#">Something else here</a></li>
+                                <router-link :to="{name:'Profil'}" class="dropdown-item"><li>Profil</li></router-link> 
                             </ul>
                         </li>
 
@@ -60,7 +60,7 @@
                         </li>
 
                     </ul>
-                    <a href=""><i class="bi bi-person-circle text-dark fs-2 float-end"></i></a>
+                    <router-link :to="{name:'Profil'}"><i class="bi bi-person-circle text-dark fs-2 float-end"></i></router-link>
                 </div>
             </div>
         </nav>

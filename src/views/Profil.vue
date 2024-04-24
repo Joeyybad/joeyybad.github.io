@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Modale from '@/components/Modale.vue';
+import ModaleUser from '@/components/ModaleUser.vue';
 export default {
     name: 'Profil',
     data() {
@@ -41,7 +41,7 @@ export default {
             revele: false
         }
     },
-    components: { 'modale': Modale },
+    components: { 'modale': ModaleUser },
     methods: {
         toggleModale(revele) {
             this.revele = revele;

@@ -1,5 +1,4 @@
 <template>
-    <main>
         <h2 class="text-start "> A la une</h2>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -30,7 +29,7 @@
             <div class=" mx-auto">
                 <a href="" class="btn float-end mt-1 me-5">
                     <div class="container">
-                        <button class="button">Voir les évènements</button>
+                        <router-link :to="{name:'Eventlist'}"><button class="button">Voir les évènements</button></router-link>
                         <span class="arrow first">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -68,38 +67,40 @@
         <div class="row">
             <div class="col-6 mx-auto">
                 <h3> Résultats : </h3>
-                <table class="table table-hover table-striped table-borderless table-sm table-responsive">
+                <table>
                     <thead>
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col" class="fs-5">Event</th>
-                            <th scope="col"></th>
-                            <th scope="col" class="text-primary fs-5">Addresse</th>
+                            <th>Event</th>
+                            <th></th>
+                            <th>Adresse</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"></th>
-                            <td>Breakdance comp</td>
-                            <td></td>
-                            <td> lemanssud</td>
+                            <td data-column="Event"> <router-link :to="{name:'Event'}">Battle of the year</router-link> </td>
+                            <td data-column=""></td>
+                            <td data-column="lieux">Le mans , France</td>
+                            <td data-column=""></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
-                            <td>Jacob</td>
-                            <td></td>
-                            <td>@fat</td>
+                            <td data-column="Event">Chill in the city</td>
+                            <td data-column=""></td>
+                            <td data-column="lieux">Paris rue turbigo</td>
+                            <td data-column=""></td>
                         </tr>
                         <tr>
-                            <th scope="row"></th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
+                            <td data-column="Event"> HipHop Session </td>
+                            <td data-column=""></td>
+                            <td data-column="lieux">Nantes</td>
+                            <td data-column=""></td>
                         </tr>
+                       
+                    
                     </tbody>
                 </table>
             </div>
         </div>
-    </main>
 </template>
 
 <style>
@@ -127,6 +128,9 @@ table {
     -webkit-box-shadow: 9px 9px 18px -1px rgba(46, 46, 46, 0.9);
     box-shadow: 9px 9px 18px -1px rgba(46, 46, 46, 0.9);
     margin-bottom: 10px;
+}
+main{
+    
 }
 </style>
 

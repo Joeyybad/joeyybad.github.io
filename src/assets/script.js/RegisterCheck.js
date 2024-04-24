@@ -38,28 +38,23 @@ export const registerCheck = () => {
     //chaîne de conditions pour vérifier le mot de passe -- if cascade to check the password validity
     if (password !== password2) {
         //si les deux mdp sont différents -- if password fields don't match
-        console.log("diff");
         error("les deux mdp sont différents !", "confPassword")
         return false
     } else if (password.length < 8) {
-        console.log("court");
         //si le mot de passe est inférieur à 8 caractères -- if the password is shorter than 8 characters
         error("le mot de passe choisi est trop court !", "password")
         return false
 
     } else if (!checkPassword.test(password)) {
-        console.log("cond");
         //si le mot de passe ne vérifie pas au regex précédemment défini -- if password and regex don't match
         error("le mot de passe choisi ne remplit pas les conditions de sécurité !", "password")
         return false
     } else {
         //mot de passe valide -- password matches all conditions
-        console.log("mdp ok");
-
     }
 }
 
-// function userUpdateCheck() {
+// export const userUpdateCheck =()=> {
 //     //récupération des données -- gathering all data
 //     let prenom = document.querySelector("#firstname").value.trim()
 //     let nom = document.querySelector("#lastname").value.trim()
