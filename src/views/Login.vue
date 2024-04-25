@@ -17,7 +17,7 @@
             <input class="input" id="password" name="password" type="password" placeholder="" aria-label="Mot de passe">
         </label>
 
-        <button class="submit mt-2" v-on:click="loginCheck">Valider</button>
+        <button type="button" class="submit mt-2" v-on:click="loginCheck">Valider</button>
         <p class="signin">Pas encore inscrit ? <router-link :to="{name:'Register'}">Incris-toi!</router-link></p>
     </form>
 </main>

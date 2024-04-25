@@ -8,7 +8,7 @@
                 <div class="col-12 d-flex justify-content-center mt-3">
                     <div class="search mb-5">
                         <input placeholder="Recherche" type="text">
-                        <button type="submit"><i class="bi bi-search m-2"></i>Go</button>
+                        <button type="submit"><i class="bi bi-search m-2"></i>go</button>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import Eventlist from '/src/views/EventList.vue'
 import Event from '/src/views/Event.vue'
 import Grouplist from '/src/views/GroupList.vue'
 import Group from '/src/views/Group.vue'
+import Eventcreate from '/src/views/EventCreate.vue'
 import DefaultLayout from '/src/layouts/DefaultLayout.vue'
 const routes = [
     {
@@ -60,6 +61,11 @@ const routes = [
                 path:'/group', 
                 name:'Group',
                 component: Group
+            },
+            {
+                path:'/eventcreate', 
+                name:'Eventcreate',
+                component: Eventcreate
             }
 
         ]

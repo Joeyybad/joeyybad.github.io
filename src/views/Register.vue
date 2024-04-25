@@ -45,11 +45,12 @@
         <input class="input" id="confPassword" name="confPassword" type="password"
           placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
       </label>
-      <button class="submit mt-2" v-on:click="registerCheck">Valider</button>
+      <button type="button" class="submit mt-2" v-on:click="registerCheck">Valider</button>
       <p class="signin">Déjà inscrit ? <router-link :to="{ name: 'Login' }">Connecte-toi</router-link></p>
     </form>
   </main>
 </template>
+
 <script setup>
 import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';

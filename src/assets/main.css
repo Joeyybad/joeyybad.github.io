@@ -61,6 +61,13 @@ p{
 
 /* error class for front end errors handler */
 
+.error{
+    margin-top: 0px;
+    font-size: .75rem;
+    color: red;
+    margin-bottom: 10px;
+}
+
 /************* CSS Button event home page  *****************/
 .container {
     display: flex;

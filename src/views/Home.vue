@@ -129,9 +129,7 @@ table {
     box-shadow: 9px 9px 18px -1px rgba(46, 46, 46, 0.9);
     margin-bottom: 10px;
 }
-main{
-    
-}
+
 </style>
 
 

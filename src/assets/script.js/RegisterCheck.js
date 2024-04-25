@@ -6,6 +6,7 @@ export const registerCheck = () => {
     let email = document.querySelector("#email").value.trim()
     let password = document.querySelector("#password").value.trim()
     let password2 = document.querySelector("#confPassword").value.trim()
+    let postalCode = document.querySelector("#postal-code").value.trim()
 
 
     //création des vérifications en format regex -- declaring regular expressions for data checking
@@ -33,6 +34,12 @@ export const registerCheck = () => {
     } else if (!checkMail.test(email)) {
         // vérifier si l'email est valide --  check if email is valid
         error("Le mail n'est pas valide", "email")
+    }
+    if(!postalCode){
+        error("Le code postal est requis pour choisir une ville", "postal-code")
+    } else if (isNaN(postalCode)) {
+        // vérifier si le code postale est valide --  check if postalcode is valid
+        error("Code postal invalide", "postal-code")
     }
 
     //chaîne de conditions pour vérifier le mot de passe -- if cascade to check the password validity
