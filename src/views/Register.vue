@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';
 
 </script>

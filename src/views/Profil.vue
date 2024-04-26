@@ -1,10 +1,10 @@
 <template>
     <main>
         <div class="container-fluid">
-            <div class="row mt-4">
+            <div class="row mt-4 m-3">
                 <h1>Mon compte</h1>
             </div>
-            <div class="row">
+            <div class="row m-3">
                 <div class="col-4 col-sm-10">
                     <img src="" alt="" class="">
                 </div>

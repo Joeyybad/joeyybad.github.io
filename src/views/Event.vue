@@ -4,7 +4,7 @@
             <div class="row flex-row d-flex justify-content-center">
                 <div class=" col-8 col-lg-8 col-md-10  mx-auto mt-5 mb-2">
                     <div class="card border-0">
-                        <img src="" class="card-img-top imgCover" alt="GameImg" />
+                        <img src="" class="card-img-top imgCover" alt="EventImg" />
                         <div class="card-header">
                             <small>
                                 <div class="rounded-pill badge text-bg-primary ms-2">
@@ -15,7 +15,7 @@
                                 </div>
                             </small>
                             <small>
-                                <div class="rounded-pill badge text-bg-warning float-end ms-2">
+                                <div class="rounded-pill badge text-bg-primary float-end ms-2">
                                     <i class="bi bi-person-plus-fill"></i>
                                 </div>
                             </small>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="d-flex justify-content-center m-2">
                             <form action="" method="post">
-                                <button type="submit" class="btn btnOrange" aria-label="S'inscrire">S'inscrire
+                                <button type="button" class="btn rounded-pill btn-outline-success" aria-label="S'inscrire">S'inscrire
                                 </button>
                             </form>
                         </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2">
-                                <router-link :to="{name:'Eventlist'}" class="card-link btn rounded-pill btn-outline-primary m-1">Retour</router-link>
+                                <router-link :to="{name:'Eventlist'}" class=" btn rounded-pill btn-outline-primary m-1">Retour</router-link>
                             </div>
                         </div>
 

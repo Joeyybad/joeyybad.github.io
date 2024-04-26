@@ -51,9 +51,9 @@
                                 Administration
                             </a>
                             <ul class="dropdown-menu">
-                                <li><router-link :to="{ name: 'Eventcreate' }" class="dropdown-item">Créer un
+                                <li><router-link :to="{ name:'Eventcreate'}" class="dropdown-item">Créer un
                                         Evènement</router-link></li>
-                                <li><a class="dropdown-item ">Créer un groupe de danse</a></li>
+                                <li><router-link :to="{name:'Groupcreate'}" class="dropdown-item ">Créer un groupe de danse</router-link></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
