@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "antd-mobile": "^5.35.0",
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "indexof": "^0.0.1",
