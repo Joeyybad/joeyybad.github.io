@@ -1,66 +1,139 @@
 <template>
     <main>
-        <div class="container-fluid">
-            <div class="row">
-                <h1 class="text-center">Evènements</h1>
-            </div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center mt-3">
-                    <div class="search mb-5">
-                        <input placeholder="Recherche" type="text">
-                        <button type="submit"><i class="bi bi-search m-2"></i>go</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id">
-                    <div class="card border-primary mt-3 mb-3">
-                        <!-- <img :src="" class="card-img-top imgCover" alt="EventImg" /> -->
-                        <div class="card-header"></div>
-                        <div class="card-body border-success">
-                            <h5 class="card-title">{{ event.eventName }}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary"><i class="bi bi-calendar-date"></i> le {{
-                                event.eventDate }} à {{ event.eventHour }}</h6>
-                            <p class="card-text text-truncate">{{ event.eventDescription }}</p>
-                            <p class="card-text">{{ event.location }}</p>
-                            <router-link :to="{ name: 'Event' }"
-                                class="card-link btn rounded-pill btn-outline-primary m-1">Voir l'évènement</router-link>
-                            <a href="" class="btn rounded-pill btn-warning m-1" v-if="isAdmin">Modifier l'event</a>
-                            <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal"
-                                data-bs-target="" v-if="isAdmin">Supprimer l'évènement</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container-fluid">
+        <div class="row">
+          <h1 class="text-center">Evènements</h1>
         </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center mt-3">
+            <div class="search mb-5">
+              <input placeholder="Recherche" type="text">
+              <button type="submit"><i class="bi bi-search m-2"></i>go</button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id">
+            <div class="card border-primary mt-3 mb-3">
+              <!-- <img :src="" class="card-img-top imgCover" alt="EventImg" /> -->
+              <div class="card-header"></div>
+              <div class="card-body border-success">
+                <h5 class="card-title">{{ event.eventName }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><i class="bi bi-calendar-date"></i> le {{ event.eventDate }} à {{ event.eventHour }}</h6>
+                <p class="card-text text-truncate">{{ event.eventDescription }}</p>
+                <p class="card-text">{{ event.location }}</p>
+                <router-link :to="{ name: 'Event' }" class="card-link btn rounded-pill btn-outline-primary m-1">Voir l'évènement</router-link>
+                <button class="btn rounded-pill btn-warning m-1" @click="toggleModale(true)">Modifier l'event</button> 
+                <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal" data-bs-target="">Supprimer l'évènement</button>
+              </div>
+            </div>
+          </div>
+          <modaleEvent v-bind:revele="revele" @update:revele="revele = $event"></modaleEvent>
+        </div>
+      </div>
     </main>
-</template>
-<script setup>
-import { ref } from 'vue';
-import axios from 'axios';
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import axios from 'axios';
+  import ModaleEvent from '@/components/ModaleEvent.vue';
+  
+  // Déclaration de la variable réactive
+  const revele = ref(false);
+  
+  // Récupérer les événements depuis l'API Strapi
+  axios.get('http://localhost:1337/api/events')
+    .then(response => {
+      const eventData = response.data.data; 
+      events.value = eventData.map(event => ({
+        id: event.id,
+        eventName: event.attributes.eventName,
+        eventDate: event.attributes.eventDate,
+        eventHour: event.attributes.eventHour,
+        eventDescription: event.attributes.eventDescription,
+        location: event.attributes.location
+      }));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  
+  // Déclaration du composant enfant
+  const components = { 'modaleEvent': ModaleEvent };
+  
+  // Méthode pour basculer l'état de la modale
+  const toggleModale = (isRevealed) => {
+    revele.value = isRevealed;
+  };
 
 // Déclaration d'une référence pour stocker les événements
 const events = ref([]);
 // Variable pour vérifier si l'utilisateur est administrateur
-const isAdmin = true;
 
 // Récupérer les événements depuis l'API Strapi
 axios.get('http://localhost:1337/api/events')
-  .then(response => {
-    const eventData = response.data.data; 
-    events.value = eventData.map(event => ({
-      id: event.id,
-      eventName: event.attributes.eventName,
-      eventDate: event.attributes.eventDate,
-      eventHour: event.attributes.eventHour,
-      eventDescription: event.attributes.eventDescription,
-      location: event.attributes.location
-    }));
-  })
-  .catch(error => {
-    console.error(error);
-  });
+    .then(response => {
+        const eventData = response.data.data;
+        events.value = eventData.map(event => ({
+            id: event.id,
+            eventName: event.attributes.eventName,
+            eventDate: event.attributes.eventDate,
+            eventHour: event.attributes.eventHour,
+            eventDescription: event.attributes.eventDescription,
+            location: event.attributes.location
+        }));
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+const isSuperAdmin = ref(false);
+const isAdmin = ref(false);
+axios.get('http://localhost:1337/api/users')
+    .then(response => {
+        const userData = response.data;
+        console.log(userData)
+        isSuperAdmin.value = userData.isSuperAdmin;
+        isAdmin.value = userData.isAdmin;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+// Méthode pour modifier les informations d'un événement
+const editEvent = (eventId, updatedEventData) => {
+    axios.patch(`http://localhost:1337/api/events/${eventId}`, updatedEventData)
+        .then(response => {
+            console.log('Événement modifié avec succès :', response.data);
+            // Actualiser la liste des événements après modification
+            // Vous pouvez également mettre à jour uniquement l'événement modifié
+            // sans rafraîchir toute la liste si cela est possible
+            fetchEvents();
+        })
+        .catch(error => {
+            console.error('Erreur lors de la modification de l\'événement :', error);
+        });
+};
+
+// Méthode pour rafraîchir la liste des événements après modification
+const fetchEvents = () => {
+    axios.get('http://localhost:1337/api/events')
+        .then(response => {
+            const eventData = response.data.data;
+            events.value = eventData.map(event => ({
+                id: event.id,
+                eventName: event.attributes.eventName,
+                eventDate: event.attributes.eventDate,
+                eventHour: event.attributes.eventHour,
+                eventDescription: event.attributes.eventDescription,
+                location: event.attributes.location
+            }));
+        })
+        .catch(error => {
+            console.error(error);
+        });
+};
 </script>
 <style scoped>
 /**************** CSS Research input ******************/

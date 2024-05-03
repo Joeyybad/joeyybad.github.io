@@ -4,53 +4,44 @@
         <div class="modale card" tabindex="0">
             <button class="btn-modale btn btn-danger" @click="toggleModale(false)"
                 aria-label="Fermer la fenêtre modale">X</button>
-            <h2> Modifier mon compte</h2>
+            <h2> Modifier l'Evènement</h2>
             <div class="flex">
                 <main class="container" aria-labelledby="form-title">
                     <form class="form">
                         <div class="flex">
-                            <label for="firstname" class="form-label">
-                                <span>Prénom</span>
-                                <input class="input form-control" id="firstname" name="firstname" type="text"
-                                    placeholder="Entrez votre prénom" aria-label="Prénom" value="">
-                            </label>
-
-                            <label for="lastname" class="form-label">
-                                <span>Nom</span>
-                                <input class="input form-control" id="lastname" name="lastname" type="text"
-                                    placeholder=" Entrez votre nom" aria-label="Nom" value="">
+                            <label for="eventName" class="form-label">
+                                <span>Nom de l'évent</span>
+                                <input class="input form-control" id="eventName" name="eventName" type="text"
+                                    placeholder="" aria-label="nom de l'event" value="">
                             </label>
                         </div>
-
-                        <label for="email" class="form-label">
-                            <span>Email</span>
-                            <input class="input form-control" id="email" name="email" type="email" placeholder="Entrez votre email"
-                                aria-label="Email" value="">
+                        <label for="description" class="form-label">
+                            <span>Description</span>
+                            <textarea class="input form-control" id="eventDescription" name="eventDescription" type="text" placeholder=""
+                                aria-label="description de l'event"> </textarea>
                         </label>
 
-                        <label for="postal-code" class="form-label">
-                            <span>Code Postal</span>
-                            <input class="input form-control" type="text" id="postal-code" name="postal-code" aria-label="Code Postal"
-                                required value="">
+                        <label for="date" class="form-label">
+                            <span>Date</span>
+                            <input class="input form-control" id="date" name="date" type="date"
+                                 aria-label="date" value="">
                         </label>
-
-                        <br><label for="city" class="form-label">Ville :</label>
-                        <select name="city" class="form-control" id="city" aria-label="input Selection de la ville" required value="">
-                            <option value="">--Choisissez une ville--</option>
-                            <option value=""></option>
-                        </select>
-
-                        <label for="password" class="form-label">
-                            <span>Mot de passe</span>
-                            <input class="input form-control" id="password" name="password" type="password"
-                                placeholder=" Entrez votre mot de passe" aria-label="Mot de passe" value="">
-                        </label>
-                        <label for="confPassword" class="form-label">
-                            <span>Confirm password</span>
-                            <input class="input form-control" id="confPassword" name="confPassword" type="password"
+                        <label for="time" class="form-label">
+                            <span>Heure</span>
+                            <input class="input form-control" id="time" name="time" type="time"
                                 placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
                         </label>
-                        <br><button class="submit mt-2" v-on:click="registerCheck">Valider</button>
+                        <label for="address" class="form-label">
+                            <span>Ville</span>
+                            <input class="input form-control" id="address" name="address" type="text"
+                                 aria-label="address" value="">
+                        </label>
+                        <label for="playerNumber" class="form-label">
+                            <span>Participants</span>
+                            <input class="input form-control" id="playerNumber" name="playerNumber" type="number"
+                                placeholder="" aria-label="Ville de l'évenement">
+                        </label>
+                        <br><button class="submit mt-2" v-on:click="eventCheck">Valider</button>
                     </form>
                 </main>
             </div>
@@ -59,9 +50,9 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, onMounted, nextTick } from 'vue';
-import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
-import { registerCheck } from '@/assets/script.js/RegisterCheck';
+
+import { eventCheck } from '@/assets/script.js/EventCheck';
+import { defineProps, defineEmits, onMounted } from 'vue';
 
 const props = defineProps({
     revele: Boolean
@@ -69,8 +60,8 @@ const props = defineProps({
 
 const emit = defineEmits(['update:revele']);
 
-const toggleModale = () => {
-    emit('update:revele', false); 
+const toggleModale = (revele) => {
+    emit('update:revele', revele);
 };
 
 onMounted(() => {
