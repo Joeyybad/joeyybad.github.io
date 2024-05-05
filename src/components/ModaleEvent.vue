@@ -11,35 +11,37 @@
                         <div class="flex">
                             <label for="eventName" class="form-label">
                                 <span>Nom de l'évent</span>
-                                <input class="input form-control" id="eventName" name="eventName" type="text"
-                                    placeholder="" aria-label="nom de l'event" value="">
+                                <input class="input form-control" id="eventName" name="eventName" type="text" placeholder=""
+                                    aria-label="nom de l'event" v-model="props.selectedEvent.attributes.eventName" />
                             </label>
                         </div>
                         <label for="description" class="form-label">
                             <span>Description</span>
-                            <textarea class="input form-control" id="eventDescription" name="eventDescription" type="text" placeholder=""
-                                aria-label="description de l'event"> </textarea>
+                            <textarea class="input form-control" id="eventDescription" name="eventDescription" type="text"
+                                placeholder="" aria-label="description de l'event"
+                                v-model="props.selectedEvent.attributes.eventDescription"></textarea>
                         </label>
 
                         <label for="date" class="form-label">
                             <span>Date</span>
-                            <input class="input form-control" id="date" name="date" type="date"
-                                 aria-label="date" value="">
+                            <input class="input form-control" id="eventDate" name="eventDate" type="date" aria-label="date"
+                                v-model="props.selectedEvent.attributes.eventDate" />
+
                         </label>
                         <label for="time" class="form-label">
                             <span>Heure</span>
-                            <input class="input form-control" id="time" name="time" type="time"
-                                placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
+                            <input class="input form-control" id="eventHour" name="eventHour" type="time" aria-label="heure"
+                                v-model="props.selectedEvent.attributes.eventHour" />
                         </label>
-                        <label for="address" class="form-label">
+                        <label for="location" class="form-label">
                             <span>Ville</span>
-                            <input class="input form-control" id="address" name="address" type="text"
-                                 aria-label="address" value="">
+                            <input class="input form-control" id="location" name="location" type="text"
+                                aria-label="ville de l'evenement" v-model="props.selectedEvent.attributes.location" />
                         </label>
                         <label for="playerNumber" class="form-label">
                             <span>Participants</span>
                             <input class="input form-control" id="playerNumber" name="playerNumber" type="number"
-                                placeholder="" aria-label="Ville de l'évenement">
+                                aria-label="Participants" v-model="props.selectedEvent.attributes.registeredUsers" />
                         </label>
                         <br><button class="submit mt-2" v-on:click="eventCheck">Valider</button>
                     </form>
@@ -50,12 +52,11 @@
 </template>
 
 <script setup>
-
-import { eventCheck } from '@/assets/script.js/EventCheck';
-import { defineProps, defineEmits, onMounted } from 'vue';
+import { defineProps, defineEmits, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
-    revele: Boolean
+    revele: Boolean,
+    selectedEvent: Object
 });
 
 const emit = defineEmits(['update:revele']);
@@ -98,8 +99,8 @@ onMounted(() => {
 .modale {
     background: #f1f1f1;
     color: #333;
-    width: 650px;
-    height: 550px;
+    width: 750px;
+    height: 600px;
     padding: 50px;
     position: fixed;
     top: 10%;
