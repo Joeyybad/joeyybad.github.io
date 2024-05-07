@@ -9,7 +9,9 @@ import Event from '/src/views/Event.vue'
 import Grouplist from '/src/views/GroupList.vue'
 import Group from '/src/views/Group.vue'
 import Eventcreate from '/src/views/EventCreate.vue'
+import Groupcreate from '/src/views/GroupCreate.vue'
 import DefaultLayout from '/src/layouts/DefaultLayout.vue'
+
 const routes = [
     {
         path: '/',
@@ -48,11 +50,6 @@ const routes = [
                 component: Eventlist
             },
             {
-                path:'/event', 
-                name:'Event',
-                component: Event
-            },
-            {
                 path:'/grouplist', 
                 name:'Grouplist',
                 component: Grouplist
@@ -66,7 +63,18 @@ const routes = [
                 path:'/eventcreate', 
                 name:'Eventcreate',
                 component: Eventcreate
-            }
+            },
+            {
+                path:'/groupcreate', 
+                name:'Groupcreate',
+                component: Groupcreate
+            },
+            {
+                path:'/event/:id',
+                name:'Event',
+                component: Event,
+                props: true
+            },
 
         ]
     },

@@ -52,7 +52,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div> -->
-                <button type="button" class=" btn btn-info mt-5 mb-2" v-on:click="eventCheck">Créer l'événement</button>
+                <button type="button" class=" btn rounded-pill btn-outline-info mt-5 mb-2" v-on:click="eventCheck">Créer l'événement</button>
             </form>
         </div>
     </main>

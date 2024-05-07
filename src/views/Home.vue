@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 mx-auto">
+            <div class="col-6 mx-auto">
                 <h3> Résultats : </h3>
                 <table>
                     <thead>

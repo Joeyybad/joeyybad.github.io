@@ -23,6 +23,11 @@
         <span>Email</span>
         <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email" aria-label="Email">
       </label>
+      
+      <label for="birthdate">
+        <span>Date de naissance</span>
+        <input class="input" id="date" name="date" type="date" placeholder="Date de naissance" aria-label="Date">
+      </label>
 
       <label for="postal-code">
         <span>Code Postal</span>
@@ -52,7 +57,6 @@
 </template>
 
 <script setup>
-import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';
 
 </script>
