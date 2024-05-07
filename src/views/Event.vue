@@ -10,7 +10,7 @@
                                 <div class="rounded-pill badge text-bg-primary ms-2">
                                     <i class="bi bi-person-plus-fill"></i>
                                     <span aria-label='Créé le'>
-                                        Créé le
+                                        Créé le 
                                     </span>
                                 </div>
                             </small>
@@ -21,9 +21,9 @@
                             </small>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"></h5>
+                            <!-- <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{  }}</h5> -->
                             <p class="card-text fw-medium"></p><br><br>
-                            <p class="card-text fw-semibold"><em> Date : à </em></p>
+                            <!-- <p class="card-text fw-semibold"><em>le {{  }} à {{  }}</em></p> -->
                         </div>
                         <div class="d-flex justify-content-center m-2">
                             <form action="" method="post">
@@ -55,3 +55,25 @@
         </div>
     </main>
 </template>
+
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const event = ref();
+
+
+const getEvent = async (eventId) => {
+    try {
+        const response = await axios.get(`http://localhost:1337/api/events/${eventId}`);
+        if (response.status === 200) {
+            event.value = response.data;
+            console.log(event.value)
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+getEvent()
+</script>

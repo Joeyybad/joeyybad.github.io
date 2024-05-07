@@ -15,26 +15,28 @@
 
             <div class="row">
                 <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id">
-                    <div class="card border-primary mt-3 mb-3">
-                        <!-- <img :src="" class="card-img-top imgCover" alt="EventImg" /> -->
-                        <div class="card-header"></div>
+                    <div class="card text-center border-primary mt-3 mb-3">
+                        <div class="card-header"> <img :src="event.eventImg" class="card-img-top imgCover imgSize" alt="EventImg" />
+                        </div>
                         <div class="card-body border-success">
                             <h5 class="card-title">{{ event.eventName }}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary"><i class="bi bi-calendar-date"></i> le {{
                                 event.eventDate }} à {{ event.eventHour }}</h6>
                             <p class="card-text text-truncate">{{ event.eventDescription }}</p>
                             <p class="card-text">{{ event.location }}</p>
-                            <router-link :to="{ name: 'Event' }"
-                                class="card-link btn rounded-pill btn-outline-primary m-1">Voir l'évènement</router-link>
+                            <router-link :to="{ path: `/event/${event.id}`}"
+                                class="card-link btn rounded-pill btn-outline-primary m-1">
+                                Voir l'évènement
+                            </router-link>
                             <button class="btn rounded-pill btn-warning m-1" @click="openModal(event.id)">Modifier
                                 l'event</button>
                             <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal"
                                 data-bs-target="">Supprimer l'évènement</button>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
         <ModaleEvent :revele="revele" :selectedEvent="selectedEvent" @update:revele="revele = $event" />
@@ -49,12 +51,12 @@ import ModaleEvent from '@/components/ModaleEvent.vue';
 // Déclaration de la variable réactive
 const revele = ref(false);
 const events = ref([]);
-const selectedEvent = ref(null); // Importez selectedEvent depuis 'ModaleEvent.vue'
+const selectedEvent = ref(null); // Import de selectedEvent de 'ModaleEvent.vue'
 
 // Fonction pour récupérer les événements depuis l'API Strapi
 const fetchEvents = async () => {
     try {
-        const response = await axios.get('http://localhost:1337/api/events');
+        const response = await axios.get('http://localhost:1337/api/events?populate=*');
         if (response.status === 200) {
             const eventData = response.data.data;
             events.value = eventData.map(event => ({
@@ -63,8 +65,10 @@ const fetchEvents = async () => {
                 eventDate: event.attributes.eventDate,
                 eventHour: event.attributes.eventHour,
                 eventDescription: event.attributes.eventDescription,
-                location: event.attributes.location
+                location: event.attributes.location,
+                eventImg: event.attributes.eventImg ? `http://localhost:1337${event.attributes.eventImg.data.attributes.url}` : null
             }));
+            
         }
     } catch (error) {
         console.error(error);
@@ -74,12 +78,13 @@ const fetchEvents = async () => {
 // Fonction pour ouvrir la modale avec les détails de l'événement sélectionné
 const openModal = async (eventId) => {
     try {
-        const response = await axios.get(`http://localhost:1337/api/events/${eventId}`);
+        const response = await axios.get(`http://localhost:1337/api/events/${eventId}?select=eventName,eventDate,eventHour,eventDescription,location,eventImg`);
         if (response.status === 200) {
-            selectedEvent.value = response.data.data; 
-            console.log(selectedEvent.value)// Assurez-vous que selectedEvent est bien importé de 'ModaleEvent.vue'
+            selectedEvent.value = response.data.data;
+            console.log(selectedEvent.value)
             toggleModale(true);
         }
+        console.log(response)
     } catch (error) {
         console.error(error);
     }
@@ -90,18 +95,6 @@ const toggleModale = (isRevealed) => {
     revele.value = isRevealed;
 };
 
-// Fonction pour modifier les informations d'un événement
-const editEvent = (eventId, updatedEventData) => {
-    axios.patch(`http://localhost:1337/api/events/${eventId}`, updatedEventData)
-        .then(response => {
-            console.log('Événement modifié avec succès :', response.data);
-            // Actualiser la liste des événements après modification
-            fetchEvents();
-        })
-        .catch(error => {
-            console.error('Erreur lors de la modification de l\'événement :', error);
-        });
-};
 
 // Appel de la fonction fetchEvents pour charger les événements au montage du composant
 fetchEvents();
@@ -144,5 +137,10 @@ fetchEvents();
 }
 
 /**************** End CSS Research input *****************/
+
+.imgSize{
+    height: 250px;    
+    width: auto;
+}
 </style>
 

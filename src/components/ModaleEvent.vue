@@ -9,6 +9,10 @@
                 <main class="container" aria-labelledby="form-title">
                     <form class="form">
                         <div class="flex">
+                            <label for="eventImg" class="form-label">
+                                <span>Image de l'event</span>
+                                <input type="file" name="eventImg" accept="image/*" @change="handleImageChange">
+                            </label>
                             <label for="eventName" class="form-label">
                                 <span>Nom de l'évent</span>
                                 <input class="input form-control" id="eventName" name="eventName" type="text" placeholder=""
@@ -63,6 +67,10 @@ const emit = defineEmits(['update:revele']);
 
 const toggleModale = (revele) => {
     emit('update:revele', revele);
+};
+const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    
 };
 
 onMounted(() => {
