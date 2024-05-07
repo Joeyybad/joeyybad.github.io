@@ -24,7 +24,7 @@
                                 event.eventDate }} à {{ event.eventHour }}</h6>
                             <p class="card-text text-truncate">{{ event.eventDescription }}</p>
                             <p class="card-text">{{ event.location }}</p>
-                            <router-link :to="{ path: `/event/${event.id}`}"
+                            <router-link :to="{ name: 'Event', params: { eventId: event.id } }"
                                 class="card-link btn rounded-pill btn-outline-primary m-1">
                                 Voir l'évènement
                             </router-link>
@@ -84,7 +84,6 @@ const openModal = async (eventId) => {
             console.log(selectedEvent.value)
             toggleModale(true);
         }
-        console.log(response)
     } catch (error) {
         console.error(error);
     }

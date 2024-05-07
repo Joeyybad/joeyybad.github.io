@@ -4,7 +4,7 @@
             <div class="row flex-row d-flex justify-content-center">
                 <div class=" col-8 col-lg-8 col-md-10  mx-auto mt-5 mb-2">
                     <div class="card border-0">
-                        <img src="" class="card-img-top imgCover" alt="EventImg" />
+                        <img class="card-img-top imgCover" alt="Image de l'événement" />
                         <div class="card-header">
                             <small>
                                 <div class="rounded-pill badge text-bg-primary ms-2">
@@ -21,9 +21,9 @@
                             </small>
                         </div>
                         <div class="card-body">
-                            <!-- <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{  }}</h5> -->
-                            <p class="card-text fw-medium"></p><br><br>
-                            <!-- <p class="card-text fw-semibold"><em>le {{  }} à {{  }}</em></p> -->
+                            <!-- <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{ eventData.eventName }}</h5> -->
+                            <!-- <p class="card-text fw-medium">{{ eventData.eventDescription }}</p><br><br> -->
+                            <!-- <p class="card-text fw-semibold"><em>le {{ eventData.eventDate }} à {{ eventData.eventHour }} à {{ eventData.location }}</em></p> -->
                         </div>
                         <div class="d-flex justify-content-center m-2">
                             <form action="" method="post">
@@ -60,20 +60,25 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 
-const event = ref();
+const event = ref(null);
+const eventData = ref(null); // Variable locale pour stocker les données de l'événement
 
-
-const getEvent = async (eventId) => {
+onMounted(async () => {
     try {
-        const response = await axios.get(`http://localhost:1337/api/events/${eventId}`);
+        const route = useRoute();
+        const eventId = route.params.eventId;
+        const response = await axios.get(`http://localhost:1337/api/events/${eventId}?populate=*`);
         if (response.status === 200) {
             event.value = response.data;
-            console.log(event.value)
+            eventData.value = response.data.data.attributes; // Extraction des données de l'événement pour les manipuler plus facilement
+            console.log(eventData.value)
+        } else {
+            console.error('Erreur lors de la récupération de l\'événement :', response.statusText);
         }
     } catch (error) {
-        console.error(error);
+        console.error('Erreur lors de la récupération de l\'événement :', error.message);
     }
-}
-getEvent()
+});
 </script>
