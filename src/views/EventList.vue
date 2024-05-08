@@ -56,7 +56,7 @@ const selectedEvent = ref(null); // Import de selectedEvent de 'ModaleEvent.vue'
 // Fonction pour récupérer les événements depuis l'API Strapi
 const fetchEvents = async () => {
     try {
-        const response = await axios.get('http://localhost:1337/api/events?populate=*');
+        const response = await axios.get('https://lovable-angel-609be25e3f.strapiapp.com/api/events?populate=*');
         if (response.status === 200) {
             const eventData = response.data.data;
             events.value = eventData.map(event => ({
@@ -66,7 +66,7 @@ const fetchEvents = async () => {
                 eventHour: event.attributes.eventHour,
                 eventDescription: event.attributes.eventDescription,
                 location: event.attributes.location,
-                eventImg: event.attributes.eventImg ? `http://localhost:1337${event.attributes.eventImg.data.attributes.url}` : null
+                eventImg: event.attributes.eventImg ? `https://lovable-angel-609be25e3f.strapiapp.com/${event.attributes.eventImg.data.attributes.url}` : null
             }));
             
         }
@@ -137,6 +137,7 @@ fetchEvents();
 
 /**************** End CSS Research input *****************/
 
+/*** Img dimension ***/
 .imgSize{
     height: 250px;    
     width: auto;
