@@ -71,12 +71,14 @@ const emit = defineEmits(['update:revele']);
 
 const toggleModale = () => {
     emit('update:revele', false); 
+    
 };
 
 onMounted(() => {
     if (props.revele) {
         nextTick(() => {
             document.querySelector('.modale').focus();
+            
         });
     }
 });
