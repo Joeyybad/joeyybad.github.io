@@ -34,8 +34,8 @@ export const initializeEventHandlers = () =>{
         updateCityList(postalCodeInput, citySelect);
     });
 }
-// Appeler la fonction d'initialisation des gestionnaires d'événements une fois que le DOM est chargé
-document.addEventListener('DOMContentLoaded', initializeEventHandlers);
+
+
 
 
 

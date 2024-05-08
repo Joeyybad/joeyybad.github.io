@@ -57,8 +57,20 @@
 </template>
 
 <script setup>
+import { onMounted, nextTick } from 'vue';
+import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';
 
+
+onMounted(() => {
+        nextTick(() => {
+            // Appeler la fonction d'initialisation des gestionnaires d'événements une fois que le DOM est chargé
+            const postalcodeconst = document.getElementById('postal-code');
+            if (postalcodeconst) {
+                document.addEventListener('DOMContentLoaded', initializeEventHandlers);
+            } 
+        });
+});
 </script>
 
 <style scoped>

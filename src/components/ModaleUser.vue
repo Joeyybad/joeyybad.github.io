@@ -31,7 +31,7 @@
                         <label for="postal-code" class="form-label">
                             <span>Code Postal</span>
                             <input class="input form-control" type="text" id="postal-code" name="postal-code" aria-label="Code Postal"
-                                required value="">
+                                required value="" @click="initializeEventHandlers()">
                         </label>
 
                         <br><label for="city" class="form-label">Ville :</label>
@@ -63,6 +63,8 @@ import { defineProps, defineEmits, onMounted, nextTick } from 'vue';
 import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';
 
+console.log('modal ok');
+
 const props = defineProps({
     revele: Boolean
 });
@@ -77,6 +79,7 @@ const toggleModale = () => {
 onMounted(() => {
     if (props.revele) {
         nextTick(() => {
+            console.log('nexttick OK');
             document.querySelector('.modale').focus();
             
         });
