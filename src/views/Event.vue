@@ -4,14 +4,14 @@
             <div class=" col-8 col-lg-8 col-md-10  mx-auto mt-5 mb-2 ">
                 <div class="card border-0">
                     <div class="d-flex justify-content-center align-items-center">
-                        <img :src="eventImgUrl" v-if="event && eventImgUrl" class="card-img-top imgCover imgSize" alt="Image de l'événement" />
+                        <img v-if="eventImgUrl" :src="eventImgUrl" class="card-img-top imgSize" alt="Image de l'événement" />
                     </div>
                     <div class="card-header">
                         <small>
                             <div class="rounded-pill badge text-bg-primary ms-2">
                                 <i class="bi bi-person-plus-fill"></i>
                                 <span aria-label='Créé le' v-if="eventData">
-                                    <!-- Créé le {{ eventData.createdAt }} -->
+                                    Créé le {{ eventData.createdAt }}
                                 </span>
                             </div>
                         </small>
@@ -28,7 +28,8 @@
                     </div>
                     <div class="d-flex justify-content-center m-2">
                         <form action="" method="post">
-                            <button type="button" class="btn rounded-pill btn-outline-success" aria-label="S'inscrire">S'inscrire
+                            <button type="button" class="btn rounded-pill btn-outline-success"
+                                aria-label="S'inscrire">S'inscrire
                             </button>
                         </form>
                     </div>
@@ -46,7 +47,8 @@
                     </div>
                     <div class="row m-3">
                         <div class="col-2">
-                            <router-link :to="{name:'Eventlist'}" class=" btn rounded-pill btn-outline-primary m-1">Retour</router-link>
+                            <router-link :to="{ name: 'Eventlist' }"
+                                class=" btn rounded-pill btn-outline-primary m-1">Retour</router-link>
                         </div>
                     </div>
                 </div>
@@ -62,22 +64,20 @@ import axios from 'axios';
 import { useRoute } from 'vue-router';
 
 const event = ref(null);
-const eventImgUrl = ref(null); // Référence pour stocker l'URL de l'image
-const eventData = ref(null); // Référence pour stocker les données complètes
+const eventImgUrl = ref(null);
+const eventData = ref(null);
 
 onMounted(async () => {
     try {
         const route = useRoute();
         const eventId = route.params.eventId;
-        const response = await axios.get(`http://localhost:1337/api/events/${eventId}?populate=*`);
+        const response = await axios.get(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${eventId}?populate=*`);
         if (response.status === 200) {
             event.value = response.data;
-            eventData.value = response.data.data.attributes; // Renommer la variable pour éviter le conflit de noms
-            console.log(eventData.value);
+            eventData.value = response.data.data.attributes;
 
-            // Construction de l'URL de l'image si elle est disponible
             if (eventData.value.eventImg) {
-                eventImgUrl.value = `http://localhost:1337${eventData.value.eventImg.data.attributes.url}`;
+                eventImgUrl.value = eventData.value.eventImg.data.attributes.url;
             }
         } else {
             console.error('Erreur lors de la récupération de l\'événement :', response.statusText);
@@ -87,14 +87,13 @@ onMounted(async () => {
     }
 });
 
-defineExpose({ eventData }); // Expose eventData pour qu'il soit accessible dans le modèle
+defineExpose({ eventData, eventImgUrl });
 </script>
 
 <style scoped>
-
 .imgSize{
-    height: auto;    
-    width: 350px;
+    width: 400px;
+    height: auto;
 }
 
 </style>

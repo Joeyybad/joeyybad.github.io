@@ -2,9 +2,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navStyle sticky-top mb-2 Knewave">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img
+                <router-link :to="{ name: 'Home' }" class="navbar-brand"><img
                         src="../assets/image/LogoBreakFranceAppli-removebg-preview-removebg-preview.webp"
-                        alt="logo BreakFrance" />BreakFrance</a>
+                        alt="logo BreakFrance" />BreakFrance</router-link>
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">

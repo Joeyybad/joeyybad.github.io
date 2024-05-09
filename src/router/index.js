@@ -70,7 +70,7 @@ const routes = [
                 component: Groupcreate
             },
             {
-                path:'/event/:eventId',
+                path:'/event/:eventId?',
                 name:'Event',
                 component: Event,
                 props: true

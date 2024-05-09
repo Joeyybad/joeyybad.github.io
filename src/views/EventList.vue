@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id">
                     <div class="card text-center border-primary mt-3 mb-3">
-                        <div class="card-header"> <img :src="event.eventImg" class="card-img-top imgCover imgSize" alt="EventImg" />
+                        <div class="card-header"> <img :src="event.eventImgUrl" class="card-img-top imgCover imgSize" alt="EventImg" />
                         </div>
                         <div class="card-body border-success">
                             <h5 class="card-title">{{ event.eventName }}</h5>
@@ -66,9 +66,8 @@ const fetchEvents = async () => {
                 eventHour: event.attributes.eventHour,
                 eventDescription: event.attributes.eventDescription,
                 location: event.attributes.location,
-                eventImg: event.attributes.eventImg ? `https://lovable-angel-609be25e3f.strapiapp.com/${event.attributes.eventImg.data.attributes.url}` : null
+                eventImgUrl: event.attributes.eventImg ? event.attributes.eventImg.data.attributes.url : null
             }));
-            
         }
     } catch (error) {
         console.error(error);
@@ -78,10 +77,9 @@ const fetchEvents = async () => {
 // Fonction pour ouvrir la modale avec les détails de l'événement sélectionné
 const openModal = async (eventId) => {
     try {
-        const response = await axios.get(`http://localhost:1337/api/events/${eventId}?select=eventName,eventDate,eventHour,eventDescription,location,eventImg`);
+        const response = await axios.get(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${eventId}?select=eventName,eventDate,eventHour,eventDescription,location,eventImg`);
         if (response.status === 200) {
             selectedEvent.value = response.data.data;
-            console.log(selectedEvent.value)
             toggleModale(true);
         }
     } catch (error) {
