@@ -1,5 +1,5 @@
 <template>
-    <footer class="navbar navbar-expand-lg footerStyle jumbotron">
+    <footer class="navbar navbar-expand-lg footerStyle mt-2 jumbotron">
         <div class="container-fluid">
 
             <div class="col-3 text-start">
@@ -41,4 +41,5 @@
         font-size: 12px;
     }
 }
+
 </style>

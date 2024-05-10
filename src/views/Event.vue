@@ -11,7 +11,7 @@
                             <div class="rounded-pill badge text-bg-primary ms-2">
                                 <i class="bi bi-person-plus-fill"></i>
                                 <span aria-label='Créé le' v-if="eventData">
-                                    Créé le {{ eventData.createdAt }}
+                                    Créé à {{ new Date(eventData.createdAt).toLocaleString() }}
                                 </span>
                             </div>
                         </small>

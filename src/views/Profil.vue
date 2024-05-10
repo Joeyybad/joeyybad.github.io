@@ -46,10 +46,9 @@ const toggleModale = () => {
 </script>
 
 
-<style>
+<style scoped>
 main {
     height: 80vh;
-
 }
 
 .submit {
@@ -57,9 +56,4 @@ main {
     border: none;
     background-color: white;
 }
-
-/* .submit:hover {
-  background-color: rgb(56, 90, 194);
-  cursor: pointer;
-} */
 </style>

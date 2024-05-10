@@ -1,58 +1,60 @@
 <template>
   <main class="container" aria-labelledby="form-title">
-    <form class="form">
-      <div class="d-flex justify-content-center align-items-center">
-        <p id="form-title" class="title">Inscription</p>
-      </div>
-      <p class="message">Inscris toi maintenant pour avoir accès au site ! <i
-          class="bi bi-emoji-grin text-warning fs-5"></i></p>
-      <div class="flex">
-        <label for="firstname">
-          <span>Prénom</span>
-          <input class="input" id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom"
-            aria-label="Prénom">
+    <div class="row pt-4">
+      <form class="form">
+        <div class="d-flex justify-content-center align-items-center">
+          <p id="form-title" class="title">Inscription</p>
+        </div>
+        <p class="message">Inscris toi maintenant pour avoir accès au site ! <i
+            class="bi bi-emoji-grin text-warning fs-5"></i></p>
+        <div class="flex">
+          <label for="firstname">
+            <span>Prénom</span>
+            <input class="input" id="firstname" name="firstname" type="text" placeholder="Entrez votre prénom"
+              aria-label="Prénom">
+          </label>
+
+          <label for="lastname">
+            <span>Nom</span>
+            <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom" aria-label="Nom">
+          </label>
+        </div>
+
+        <label for="email">
+          <span>Email</span>
+          <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email" aria-label="Email">
+        </label>
+        
+        <label for="birthdate">
+          <span>Date de naissance</span>
+          <input class="input" id="date" name="date" type="date" placeholder="Date de naissance" aria-label="Date">
         </label>
 
-        <label for="lastname">
-          <span>Nom</span>
-          <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom" aria-label="Nom">
+        <label for="postal-code">
+          <span>Code Postal</span>
+          <input class="input" type="text" id="postal-code" name="postal-code" aria-label="Code Postal" required>
         </label>
-      </div>
 
-      <label for="email">
-        <span>Email</span>
-        <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email" aria-label="Email">
-      </label>
-      
-      <label for="birthdate">
-        <span>Date de naissance</span>
-        <input class="input" id="date" name="date" type="date" placeholder="Date de naissance" aria-label="Date">
-      </label>
+        <label for="city">Ville :</label>
+        <select name="city" class="mb-3" id="city" aria-label="input Selection de la ville" required>
+          <option value="">--Choisissez une ville--</option>
+          <option value=""></option>
+        </select>
 
-      <label for="postal-code">
-        <span>Code Postal</span>
-        <input class="input" type="text" id="postal-code" name="postal-code" aria-label="Code Postal" required>
-      </label>
-
-      <label for="city">Ville :</label>
-      <select name="city" class="mb-3" id="city" aria-label="input Selection de la ville" required>
-        <option value="">--Choisissez une ville--</option>
-        <option value=""></option>
-      </select>
-
-      <label for="password">
-        <span>Mot de passe</span>
-        <input class="input" id="password" name="password" type="password" placeholder=" Entrez votre mot de passe"
-          aria-label="Mot de passe">
-      </label>
-      <label for="confPassword">
-        <span>Confirm password</span>
-        <input class="input" id="confPassword" name="confPassword" type="password"
-          placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
-      </label>
-      <button type="button" class="submit mt-2" v-on:click="registerCheck">Valider</button>
-      <p class="signin">Déjà inscrit ? <router-link :to="{ name: 'Login' }">Connecte-toi</router-link></p>
-    </form>
+        <label for="password">
+          <span>Mot de passe</span>
+          <input class="input" id="password" name="password" type="password" placeholder=" Entrez votre mot de passe"
+            aria-label="Mot de passe">
+        </label>
+        <label for="confPassword">
+          <span>Confirm password</span>
+          <input class="input" id="confPassword" name="confPassword" type="password"
+            placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
+        </label>
+        <button type="button" class="submit mt-2" v-on:click="registerCheck">Valider</button>
+        <p class="signin">Déjà inscrit ? <router-link :to="{ name: 'Login' }">Connecte-toi</router-link></p>
+      </form>
+    </div>
   </main>
 </template>
 
@@ -77,11 +79,8 @@ onMounted(() => {
 /**********  CSS Registration Form  **********/
 
 .container {
-  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  /* Optionnel : centrer verticalement le formulaire sur la hauteur de la fenêtre */
 }
 
 .form {
@@ -89,6 +88,9 @@ onMounted(() => {
   flex-direction: column;
   gap: 10px;
   width: 40%;
+  min-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;

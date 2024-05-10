@@ -17,22 +17,30 @@
 }
 
 /*********** General Style for all page ***********/
- main{
-    margin:  0;
-} 
 body{
-    background-color: var(--bg-light) ;
+  background-color: var(--bg-light) ;
 }
+
+main{
+    margin-bottom: 6rem;
+} 
+
+.row {
+  padding-bottom:1.5rem;
+}
+
 .navStyle {
     background-color: var(--bg-light-grey);
 }
 
 .footerStyle {
+    height: 6rem;
     background-color: var(--bg-darkblue);
     color: var(--bg-light);
     position: fixed;
     bottom: 0;
     width: 100%;
+    left: 0;
 }
 .lightFont{
     color: var(--bg-light);
