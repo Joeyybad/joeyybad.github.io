@@ -16,7 +16,8 @@
 
           <label for="lastname">
             <span>Nom</span>
-            <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom" aria-label="Nom">
+            <input class="input" id="lastname" name="lastname" type="text" placeholder=" Entrez votre nom"
+              aria-label="Nom">
           </label>
         </div>
 
@@ -24,7 +25,7 @@
           <span>Email</span>
           <input class="input" id="email" name="email" type="email" placeholder="Entrez votre email" aria-label="Email">
         </label>
-        
+
         <label for="birthdate">
           <span>Date de naissance</span>
           <input class="input" id="date" name="date" type="date" placeholder="Date de naissance" aria-label="Date">
@@ -40,7 +41,6 @@
           <option value="">--Choisissez une ville--</option>
           <option value=""></option>
         </select>
-
         <label for="password">
           <span>Mot de passe</span>
           <input class="input" id="password" name="password" type="password" placeholder=" Entrez votre mot de passe"
@@ -51,7 +51,7 @@
           <input class="input" id="confPassword" name="confPassword" type="password"
             placeholder=" Confirmez votre mot de passe" aria-label="Confirmez votre mot de passe">
         </label>
-        <button type="button" class="submit mt-2" v-on:click="registerCheck">Valider</button>
+        <button type="button" class="submit mt-2" @click="register">Valider</button>
         <p class="signin">Déjà inscrit ? <router-link :to="{ name: 'Login' }">Connecte-toi</router-link></p>
       </form>
     </div>
@@ -60,18 +60,43 @@
 
 <script setup>
 import { onMounted, nextTick } from 'vue';
-import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
+import { initializeEventHandlers } from '@/assets/script.js/CityFetch';
+import { registerUser } from '@/services/authService';
 import { registerCheck } from '@/assets/script.js/RegisterCheck';
 
 
+const register = async () => {
+  if (!registerCheck()) {
+    return; // Arrêter la fonction si une erreur est détectée dans les données du formulaire
+  }
+
+  // Récupérer les données du formulaire
+  const userData = {
+    firstname: document.getElementById('firstname').value.trim(),
+    lastname: document.getElementById('lastname').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    date: document.getElementById('date').value.trim(),
+    city: document.getElementById('city').value.trim(),
+    password: document.getElementById('password').value.trim()
+
+  };
+
+  try {
+    // Appeler la fonction d'inscription depuis le service authService
+    await registerUser(userData);
+  } catch (error) {
+    console.error('Erreur lors de l\'inscription :', error.response.data);
+  }
+};
+
 onMounted(() => {
-        nextTick(() => {
-            // Appeler la fonction d'initialisation des gestionnaires d'événements une fois que le DOM est chargé
-            const postalcodeconst = document.getElementById('postal-code');
-            if (postalcodeconst) {
-                document.addEventListener('DOMContentLoaded', initializeEventHandlers);
-            } 
-        });
+  nextTick(() => {
+    // Appeler la fonction d'initialisation des gestionnaires d'événements une fois que le DOM est chargé
+    const postalcodeconst = document.getElementById('postal-code');
+    if (postalcodeconst) {
+      document.addEventListener('DOMContentLoaded', initializeEventHandlers);
+    }
+  });
 });
 </script>
 
@@ -212,4 +237,5 @@ onMounted(() => {
     box-shadow: 9px 9px 18px -1px rgba(46, 46, 46, 0.9);
   }
 
-}</style>
+}
+</style>
