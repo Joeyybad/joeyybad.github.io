@@ -4,9 +4,13 @@ export const registerCheck = () => {
     let prenom = document.querySelector("#firstname").value.trim()
     let nom = document.querySelector("#lastname").value.trim()
     let email = document.querySelector("#email").value.trim()
+    let date = document.getElementById('date').value.trim()
     let password = document.querySelector("#password").value.trim()
     let password2 = document.querySelector("#confPassword").value.trim()
     let postalCode = document.querySelector("#postal-code").value.trim()
+    let city = document.querySelector('#city').value
+    const today = new Date()
+    const selectedDate = new Date(date)
 
 
     //création des vérifications en format regex -- declaring regular expressions for data checking
@@ -27,7 +31,6 @@ export const registerCheck = () => {
     } else if (!checkNom.test(nom)) {
         error("le nom doit contenir plus de 2 charactères")
     }
-
     // vérifier si l'email existe --  check if email exists
     if (!email) {
         error("Le mail est requis", "email")
@@ -35,11 +38,20 @@ export const registerCheck = () => {
         // vérifier si l'email est valide --  check if email is valid
         error("Le mail n'est pas valide", "email")
     }
+    if(!date){
+        error("La date est requise", "date")
+    }
+    if(selectedDate > today){
+        error("La date ne peut pas être postérieure à la date d'aujourd'hui", "date");
+    }
     if(!postalCode){
         error("Le code postal est requis pour choisir une ville", "postal-code")
     } else if (isNaN(postalCode)) {
         // vérifier si le code postale est valide --  check if postalcode is valid
         error("Code postal invalide", "postal-code")
+    }
+    if(!city){
+        error("Ville obligatoire", "city")
     }
 
     //chaîne de conditions pour vérifier le mot de passe -- if cascade to check the password validity
@@ -59,6 +71,24 @@ export const registerCheck = () => {
     } else {
         //mot de passe valide -- password matches all conditions
     }
+}
+
+
+
+function resetErrors() {
+    // Enlève les messages d'erreur précédents -- remove already existing error messages
+    const errors = document.querySelectorAll(".error");
+    errors.forEach(message => message.remove());
+}
+
+function error(message, id) {
+    //définit l'élément error -- defines the error element to display correctly the error message
+    let error = document.createElement("span")
+    error.className = "error"
+    error.textContent = message
+
+    //définit le champ auquel error est rattaché -- defines on which field error is attached
+    document.getElementById(id).parentNode.appendChild(error)
 }
 
 // export const userUpdateCheck =()=> {
@@ -115,21 +145,3 @@ export const registerCheck = () => {
 //     }
 
 // }
-
-
-function resetErrors() {
-    // Enlève les messages d'erreur précédents -- remove already existing error messages
-    const errors = document.querySelectorAll(".error");
-    errors.forEach(message => message.remove());
-}
-
-function error(message, id) {
-    //définit l'élément error -- defines the error element to display correctly the error message
-    let error = document.createElement("span")
-    error.className = "error"
-    error.textContent = message
-
-    //définit le champ auquel error est rattaché -- defines on which field error is attached
-    document.getElementById(id).parentNode.appendChild(error)
-}
-
