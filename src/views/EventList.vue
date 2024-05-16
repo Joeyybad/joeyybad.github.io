@@ -66,8 +66,10 @@ const fetchEvents = async () => {
                 eventHour: event.attributes.eventHour,
                 eventDescription: event.attributes.eventDescription,
                 location: event.attributes.location,
-                eventImgUrl: event.attributes.eventImg ? event.attributes.eventImg.data.attributes.url : null
+                eventImgUrl: event.attributes.eventImg.data ? event.attributes.eventImg.data.attributes.url : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Break_dance.svg/langfr-560px-Break_dance.svg.png"
             }));
+            // console.log('data: ');
+            // console.table(events.value);
         }
     } catch (error) {
         console.error(error);

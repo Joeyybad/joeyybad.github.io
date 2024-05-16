@@ -21,10 +21,15 @@
                             </div> -->
                         </small>
                     </div>
-                    <div class="card-body">
+                    <template v-if="eventData">
                         <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{ eventData.eventName }}</h5>
                         <p class="card-text fw-medium">{{ eventData.eventDescription }}</p><br><br>
                         <p class="card-text fw-semibold"><em>le {{ eventData.eventDate }} à {{ eventData.eventHour }} à {{ eventData.location }}</em></p>
+                    </template>
+                    <template v-else>
+                        <p class="card-text">L'évenement n'a pas pu charger</p>
+                    </template>
+                    <div class="card-body">
                     </div>
                     <div class="d-flex justify-content-center m-2">
                         <form action="" method="post">

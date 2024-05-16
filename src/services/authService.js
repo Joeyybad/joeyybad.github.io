@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Fonction pour enregistrer un nouvel utilisateur
-const registerUser = async (userData) => {
+export const registerUser = async (userData) => {
   try {
     // Effectuez une requête POST vers l'endpoint d'inscription de votre API Strapi
     const response = await axios.post('https://lovable-angel-609be25e3f.strapiapp.com/auth/local/register', userData);
