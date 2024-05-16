@@ -11,7 +11,7 @@
                             <div class="rounded-pill badge text-bg-primary ms-2">
                                 <i class="bi bi-person-plus-fill"></i>
                                 <span aria-label='Créé le' v-if="eventData">
-                                    Créé à {{ new Date(eventData.createdAt).toLocaleString() }}
+                                    Créé le {{ new Date(eventData.createdAt).toLocaleString() }}
                                 </span>
                             </div>
                         </small>
@@ -22,9 +22,9 @@
                         </small>
                     </div>
                     <div class="card-body">
-                        <!-- <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{ eventData.eventName }}</h5> -->
-                        <!-- <p class="card-text fw-medium">{{ eventData.eventDescription }}</p><br><br> -->
-                        <!-- <p class="card-text fw-semibold"><em>le {{ eventData.eventDate }} à {{ eventData.eventHour }} à {{ eventData.location }}</em></p> -->
+                        <h5 class="card-title mt-1 fw-semibold fs-2 text-center mb-4"> {{ eventData.eventName }}</h5>
+                        <p class="card-text fw-medium">{{ eventData.eventDescription }}</p><br><br>
+                        <p class="card-text fw-semibold"><em>le {{ eventData.eventDate }} à {{ eventData.eventHour }} à {{ eventData.location }}</em></p>
                     </div>
                     <div class="d-flex justify-content-center m-2">
                         <form action="" method="post">
