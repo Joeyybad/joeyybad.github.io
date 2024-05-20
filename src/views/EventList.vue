@@ -14,14 +14,14 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id">
+                <div class="col-sm-10 col-md-6 col-lg-4" v-for="event in events" :key="event.id" :event="event" @editEvent="editEvent">
                     <div class="card text-center border-primary mt-3 mb-3">
                         <div class="card-header"> <img :src="event.eventImgUrl" class="card-img-top imgCover imgSize" alt="EventImg" />
                         </div>
                         <div class="card-body border-success">
                             <h5 class="card-title">{{ event.eventName }}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary"><i class="bi bi-calendar-date"></i> le {{
-                                event.eventDate }} à {{ event.eventHour }}</h6>
+                                event.eventDate }} à {{ formatHour(event.eventHour) }}</h6> 
                             <p class="card-text text-truncate">{{ event.eventDescription }}</p>
                             <p class="card-text">{{ event.location }}</p>
                             <router-link :to="{ name: 'Event', params: { eventId: event.id } }"
@@ -39,19 +39,21 @@
 
             </div>
         </div>
-        <ModaleEvent :revele="revele" :selectedEvent="selectedEvent" @update:revele="revele = $event" />
+        <ModaleEvent :revele="revele" :selectedEvent="selectedEvent" @update:revele="revele = $event"  @eventUpdated="handleEventUpdated" />
     </main>
 </template>
   
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import moment from 'moment';
 import ModaleEvent from '@/components/ModaleEvent.vue';
 
 // Déclaration de la variable réactive
 const revele = ref(false);
 const events = ref([]);
 const selectedEvent = ref(null); // Import de selectedEvent de 'ModaleEvent.vue'
+
 
 // Fonction pour récupérer les événements depuis l'API Strapi
 const fetchEvents = async () => {
@@ -66,7 +68,7 @@ const fetchEvents = async () => {
                 eventHour: event.attributes.eventHour,
                 eventDescription: event.attributes.eventDescription,
                 location: event.attributes.location,
-                eventImgUrl: event.attributes.eventImg.data ? event.attributes.eventImg.data.attributes.url : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Break_dance.svg/langfr-560px-Break_dance.svg.png"
+                eventImgUrl: event.attributes.eventImg.data ? event.attributes.eventImg.data.attributes.url : "src/assets/image/eventNotFound.png"
             }));
             // console.log('data: ');
             // console.table(events.value);
@@ -88,12 +90,32 @@ const openModal = async (eventId) => {
         console.error(error);
     }
 };
+const editEvent = (event) => {
+  selectedEvent.value = event;
+  showModal.value = true;
+};
+// Fonction pour mettre à jour les évènements
+
+const handleEventUpdated = (updatedEvent) => {
+  // Trouvez l'index de l'événement mis à jour
+  const index = events.value.findIndex(event => event.id === updatedEvent.data.id);
+  if (index !== -1) {
+    // Mettez à jour l'événement dans la liste locale
+    events.value[index] = updatedEvent.data;
+  }
+  // Fermez la modale
+  showModal.value = false;
+};
 
 // Fonction pour fermer ou ouvrir la modale
 const toggleModale = (isRevealed) => {
     revele.value = isRevealed;
 };
 
+// Fonction pour formater l'heure
+const formatHour = (hour) => {
+  return moment(hour, 'HH:mm:ss').format('HH:mm');
+};
 
 // Appel de la fonction fetchEvents pour charger les événements au montage du composant
 fetchEvents();

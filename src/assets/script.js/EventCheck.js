@@ -4,11 +4,11 @@ export const eventCheck = ()=>{
     const eventDescription = document.getElementById('eventDescription').value.trim();
     const eventDate = document.getElementById('eventDate').value;
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    const eventTime = document.getElementById('eventTime').value.trim();
+    const eventTime = document.getElementById('eventTime').value;
     const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
-    const playersNumber = document.getElementById('playersNumber').value;
-    const address = document.getElementById('address').value.trim();
-    const addressRegex  = /^.{3,}$/;
+    const registeredUser = document.getElementById('registeredUser').value;
+    const city = document.getElementById('city').value.trim();
+    const cityRegex  = /^.{3,}$/;
 
     // Vérification du champ eventName
     if (!eventName || eventName.length < 2 || eventName.length > 20) {
@@ -35,13 +35,13 @@ export const eventCheck = ()=>{
     }
 
      // Vérification du champ address
-     if (!address || !addressRegex.test(address)) {
+     if (!city || !cityRegex.test(city)) {
         error("L'addresse doit contenir au moins 3 caractères", "address");
         return false;
     }
 
-    // Vérification du champ playersNumber
-    if (isNaN(playersNumber) || playersNumber < 1 || playersNumber > 60) {
+    // Vérification du champ registeredUser
+    if (isNaN(registeredUser) || registeredUser < 1 || registeredUser > 60) {
         error("Le nombre de joueur doit être compris entre 1 et 60", "playersNumber");
         return false;
     }
