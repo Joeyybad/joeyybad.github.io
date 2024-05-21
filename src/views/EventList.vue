@@ -49,11 +49,11 @@ import axios from 'axios';
 import moment from 'moment';
 import ModaleEvent from '@/components/ModaleEvent.vue';
 
-// Déclaration de la variable réactive
+
+// // Déclaration de la variable réactive
 const revele = ref(false);
 const events = ref([]);
 const selectedEvent = ref(null); // Import de selectedEvent de 'ModaleEvent.vue'
-
 
 // Fonction pour récupérer les événements depuis l'API Strapi
 const fetchEvents = async () => {
@@ -119,6 +119,7 @@ const formatHour = (hour) => {
 
 // Appel de la fonction fetchEvents pour charger les événements au montage du composant
 fetchEvents();
+
 </script>
 <style scoped>
 /**************** CSS Research input ******************/

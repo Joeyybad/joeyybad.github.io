@@ -108,18 +108,20 @@ const submitChanges = async () => {
         if (!eventUpdateCheck(updatedEvent)) {
             return;
         }
-        console.log('Données envoyées dans la requête PUT :', updatedEvent)
+        console.log('Données envoyées dans la requête PUT !! :', updatedEvent)
 
-        const response = await axios.put(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${props.selectedEvent.id}`, {
+        const response = await axios
+        .put(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${props.selectedEvent.id}`, {
             data: updatedEvent
-        });
-
+        })
+        .catch((error) => console.log(error));
         if (response.status === 200) {
-            emit('eventUpdated', response.data);
-            toggleModale(false);
+            // console.log('done', response);
         } else {
-            console.error('Erreur lors de la mise à jour de l\'événement :', response.statusText);
+            // console.log('not done', response);
         }
+
+
     } catch (error) {
         console.error('Erreur lors de la mise à jour de l\'événement :', error.message);
     }

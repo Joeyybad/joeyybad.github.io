@@ -14,15 +14,15 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <router-link :to="{ name: 'FAQ' }" class="nav-link"
-                                @click="deactivateAdminLink">FAQ</router-link>
+                                >FAQ</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link :to="{ name: 'Home' }" class="nav-link" @click="deactivateAdminLink"><i
+                            <router-link :to="{ name: 'Home' }" class="nav-link" ><i
                                     class="bi bi-house"></i>Home</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'Register' }" class="nav-link"
-                                @click="deactivateAdminLink">S'inscrire</router-link>
+                                >S'inscrire</router-link>
                         </li>
 
                         <li class='nav-item '>
@@ -31,7 +31,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link :to="{ name: 'Login' }" class="nav-link" @click="deactivateAdminLink"> <i
+                            <router-link :to="{ name: 'Login' }" class="nav-link" > <i
                                     class="bi bi-box-arrow-in-left"></i>Se
                                 connecter</router-link>
                         </li>
@@ -39,11 +39,11 @@
 
                         <li class="nav-item">
                             <router-link :to="{ name: 'Eventlist' }" class="nav-link "
-                                @click="deactivateAdminLink">Evènements</router-link>
+                                >Evènements</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'Grouplist' }" class="nav-link"
-                                @click="deactivateAdminLink">Groupes</router-link>
+                                >Groupes</router-link>
                         </li>
                         <li class="nav-item dropdown" :class="{ active: isActive }" @click="toggleDropdown">
                             <a class="nav-link dropdown-toggle nav-link" role="button" data-bs-toggle="dropdown"

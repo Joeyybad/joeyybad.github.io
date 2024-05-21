@@ -33,7 +33,7 @@
 
         <label for="postal-code">
           <span>Code Postal</span>
-          <input class="input" type="text" id="postal-code" name="postal-code" aria-label="Code Postal" required>
+          <input class="input" type="text" id="postal-code" name="postal-code" aria-label="Code Postal" @click="initializeEventHandlers()" required>
         </label>
 
         <label for="city">Ville :</label>
