@@ -114,7 +114,7 @@ const submitChanges = async () => {
             data: updatedEvent
         });
 
-        if (response.status === 200) {
+        if (response.status == 200) {
             emit('eventUpdated', response.data);
             toggleModale(false);
         } else {
