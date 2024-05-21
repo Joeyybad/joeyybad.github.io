@@ -57,14 +57,14 @@
 import { defineProps, defineEmits, onMounted, ref, computed, nextTick } from 'vue';
 import axios from 'axios';
 import moment from 'moment';
-import { eventUpdateCheck, resetErrors } from '@/assets/script.js/eventUpdateCheck';
+import { eventUpdateCheck, resetErrors } from '@/assets/script/eventUpdateCheck';
 
 const props = defineProps({
     revele: Boolean,
     selectedEvent: Object
 });
 
-const emit = defineEmits(['update:revele', 'eventUpdated']);
+const emit = defineEmits(['update:revele', 'eventUpdated']); // definition des events et affectation à la constante emit 
 
 const toggleModale = (revele) => {
     emit('update:revele', revele);
@@ -99,7 +99,7 @@ const submitChanges = async () => {
             eventName: props.selectedEvent.attributes.eventName,
             eventDescription: props.selectedEvent.attributes.eventDescription,
             eventDate: props.selectedEvent.attributes.eventDate,
-            eventHour: eventHourFormatted, // Utiliser la nouvelle valeur formatée
+            eventHour: eventHourFormatted, // Heure formattée via moment
             location: props.selectedEvent.attributes.location,
             registeredUsers: props.selectedEvent.attributes.registeredUsers,
         };
@@ -108,15 +108,15 @@ const submitChanges = async () => {
         if (!eventUpdateCheck(updatedEvent)) {
             return;
         }
-        console.log('Données envoyées dans la requête PUT :', updatedEvent)
+        console.log('Données envoyées dans la requête PUT !! :', updatedEvent)
 
         const response = await axios.put(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${props.selectedEvent.id}`, {
             data: updatedEvent
         });
 
-        if (response.status == 200) {
-            emit('eventUpdated', response.data);
-            toggleModale(false);
+        if (response.status === 200) {
+            emit('eventUpdated', response.data); // permet d'emmettre l'event eventUpdated
+            toggleModale(false); // permet de fermer la modale
         } else {
             console.error('Erreur lors de la mise à jour de l\'événement :', response.statusText);
         }

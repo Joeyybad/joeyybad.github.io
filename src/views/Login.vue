@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import {loginCheck} from '@/assets/script.js/LoginCheck'
+import {loginCheck} from '@/assets/script/LoginCheck'
 
 </script>
 

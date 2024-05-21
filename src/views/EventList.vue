@@ -49,11 +49,11 @@ import axios from 'axios';
 import moment from 'moment';
 import ModaleEvent from '@/components/ModaleEvent.vue';
 
-// Déclaration de la variable réactive
+
+// // Déclaration de la variable réactive
 const revele = ref(false);
 const events = ref([]);
 const selectedEvent = ref(null); // Import de selectedEvent de 'ModaleEvent.vue'
-
 
 // Fonction pour récupérer les événements depuis l'API Strapi
 const fetchEvents = async () => {
@@ -94,19 +94,26 @@ const editEvent = (event) => {
   selectedEvent.value = event;
   showModal.value = true;
 };
-// Fonction pour mettre à jour les évènements
 
+// Fonction pour mettre à jour les évènements
 const handleEventUpdated = (updatedEvent) => {
-  // Trouvez l'index de l'événement mis à jour
+  // Trouvez l'index de l'événement mis à jour si l'index est différent de -1 alors l'index peut être trouvé
   const index = events.value.findIndex(event => event.id === updatedEvent.data.id);
   if (index !== -1) {
-    // Mettez à jour l'événement dans la liste locale
-    events.value[index] = updatedEvent.data;
+    // Mise à jour de l'event par les données fournis par updatedEvent
+    events.value[index] = {
+        id: updatedEvent.data.id,
+        eventName: updatedEvent.data.attributes.eventName,
+        eventDate: updatedEvent.data.attributes.eventDate,
+        eventHour: updatedEvent.data.attributes.eventHour,
+        eventDescription: updatedEvent.data.attributes.eventDescription,
+        location: updatedEvent.data.attributes.location,
+        eventImgUrl: updatedEvent.data.attributes.eventImg ? updatedEvent.data.attributes.eventImg.data.attributes.url : "src/assets/image/eventNotFound.png"
+    };
   }
-  // Fermez la modale
-  showModal.value = false;
+  // fermeture de la modale
+  revele.value = false;
 };
-
 // Fonction pour fermer ou ouvrir la modale
 const toggleModale = (isRevealed) => {
     revele.value = isRevealed;
@@ -119,6 +126,7 @@ const formatHour = (hour) => {
 
 // Appel de la fonction fetchEvents pour charger les événements au montage du composant
 fetchEvents();
+
 </script>
 <style scoped>
 /**************** CSS Research input ******************/

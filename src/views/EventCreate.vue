@@ -59,5 +59,5 @@
 </template>
 
 <script setup>
- import {eventCheck} from '@/assets/script.js/EventCheck'
+ import {eventCheck} from '@/assets/script/EventCheck'
 </script>

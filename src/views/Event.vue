@@ -44,15 +44,7 @@
                     <div class="card-body">
                     </div>
                     <!-- v-if="isAdmin" -->
-                    <div class="row">
-                        <div class="col d-flex align-items-center justify-content-center">
-                            <a href="" type="button" class="btn btn-outline-warning m-2 " data-bs-toggle="modal"
-                                data-bs-target="#ModalEventModif{{event.id}}"> Modifier
-                                l'événement</a>
-                            <button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal"
-                                data-bs-target="#ModalEventSupp{{event.id}}"> Supprimer l'événement</button>
-                        </div>
-                    </div>
+                  
                     <div class="row m-3">
                         <div class="col-2">
                             <router-link :to="{ name: 'Eventlist' }"

@@ -60,8 +60,8 @@
 
 <script setup>
 import { defineProps, defineEmits, onMounted, nextTick } from 'vue';
-import { updateCityList, initializeEventHandlers } from '@/assets/script.js/CityFetch';
-import { registerCheck } from '@/assets/script.js/RegisterCheck';
+import { updateCityList, initializeEventHandlers } from '@/assets/script/CityFetch';
+import { registerCheck } from '@/assets/script/RegisterCheck';
 
 console.log('modal ok');
 

@@ -58,6 +58,6 @@
 
 <script setup>
 
-import {groupCheck} from '@/assets/script.js/GroupCheck';
+import {groupCheck} from '@/assets/script/GroupCheck';
 
 </script>
