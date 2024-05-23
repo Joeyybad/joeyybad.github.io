@@ -81,9 +81,10 @@ const fetchEvents = async () => {
 // Fonction pour ouvrir la modale avec les détails de l'événement sélectionné
 const openModal = async (eventId) => {
     try {
-        const response = await axios.get(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${eventId}?select=eventName,eventDate,eventHour,eventDescription,location,eventImg`);
+        const response = await axios.get(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${eventId}?populate=*`);
         if (response.status === 200) {
             selectedEvent.value = response.data.data;
+            console.log(response.data.data);
             toggleModale(true);
         }
     } catch (error) {
@@ -92,6 +93,7 @@ const openModal = async (eventId) => {
 };
 const editEvent = (event) => {
   selectedEvent.value = event;
+  alert('editEvent');
   showModal.value = true;
 };
 
@@ -111,6 +113,7 @@ const handleEventUpdated = (updatedEvent) => {
         eventImgUrl: updatedEvent.data.attributes.eventImg ? updatedEvent.data.attributes.eventImg.data.attributes.url : "src/assets/image/eventNotFound.png"
     };
   }
+  console.log('event updated : ' + events.value[index].id) ;
   // fermeture de la modale
   revele.value = false;
 };

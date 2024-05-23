@@ -70,6 +70,7 @@ export const registerCheck = () => {
         return false
     } else {
         //mot de passe valide -- password matches all conditions
+        return true;
     }
 }
 

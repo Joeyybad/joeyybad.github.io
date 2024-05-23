@@ -7,11 +7,19 @@
             <h2> Modifier l'Evènement</h2>
             <div class="flex">
                 <main class="container" aria-labelledby="form-title">
-                    <form class="form" @submit.prevent="submitChanges">
+                    <form id="submit_event_form" class="form" @submit.prevent="submitChanges">
                         <div class="flex">
                             <label for="eventImg" class="form-label">
-                                <span>Image de l'event</span>
-                                <input type="file" id="eventImg" name="eventImg" accept="image/*" @change="handleImageChange">
+                                <div v-if="!props.selectedEvent.attributes.eventImg.data">
+                                    <span>Image de l'event - Selection</span>
+                                    <input type="file" id="eventImg" name="eventImg" accept="image/*" @change="handleImageChange($event)">
+                                </div>
+                                <div v-else>
+                                    <span>Image de l'event</span>
+                                    <img :src="props.selectedEvent.attributes.eventImg.data.attributes.url" :alt=props.selectedEvent.attributes.eventImg.data.attributes.name />
+                                    <button @click="removeImage">Supprimer l'image</button>
+                                </div>
+                                <!-- <input type="file" id="eventImg" name="eventImg" accept="image/*" @change="handleImageChange"> -->
                             </label>
                             <label for="eventName" class="form-label">
                                 <span>Nom de l'évent</span>
@@ -71,9 +79,31 @@ const toggleModale = (revele) => {
 };
 
 const handleImageChange = (event) => {
+    let token = 'af440c0951718041a8928a8d8a9a39d5311092108401ee881c1fbcdcc71c547dec4dfca36d0b1439d1fb9bb2fe6d3b212c83d565f92caf0941c0aaf5998d3afab7deabdf66ff69ae1dc7447e522149652fb1303df08aa50b7363417287b6054f831db8d9e3213bd12e3b5c6fdf7247e31268d87c7f53fb9fc4962a5291dd7e9a';
     const file = event.target.files[0];
-    // Gérer le fichier image si nécessaire
+    const fd = new FormData();
+    fd.append('files', file);
+    axios.post('https://lovable-angel-609be25e3f.strapiapp.com/api/upload', fd, {
+          headers: { 
+            'Authorization': 'Bearer '+ token,
+            'Content-Type' : 'multipart/form-data',
+           },
+        })
+        .then(response => {
+          console.log(response);
+          if (response.status==200){
+            document.getElementById('eventImg').style.color = 'green';
+            props.selectedEvent.attributes.eventImg = response.data
+            console.log('Données props :', props);
+          } else {
+            document.getElementById('eventImg').style.color = 'unset';
+          }
+        });
 };
+
+ const removeImage = (e) => {
+        props.selectedEvent.attributes.eventImg = '';
+    }
 
 const formattedEventHour = computed({
     get() {
@@ -97,6 +127,7 @@ const submitChanges = async () => {
 
         const updatedEvent = {
             eventName: props.selectedEvent.attributes.eventName,
+            eventImg: props.selectedEvent.attributes.eventImg,
             eventDescription: props.selectedEvent.attributes.eventDescription,
             eventDate: props.selectedEvent.attributes.eventDate,
             eventHour: eventHourFormatted, // Heure formattée via moment
@@ -109,18 +140,22 @@ const submitChanges = async () => {
             return;
         }
         console.log('Données envoyées dans la requête PUT !! :', updatedEvent)
+        console.log('Données props :', props)
 
-        const response = await axios.put(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${props.selectedEvent.id}`, {
+        const response = await axios.put(`https://lovable-angel-609be25e3f.strapiapp.com/api/events/${props.selectedEvent.id}?populate=*`, {
             data: updatedEvent
         });
 
         if (response.status === 200) {
-            emit('eventUpdated', response.data); // permet d'emmettre l'event eventUpdated
+            console.log(response.data);
+            console.log(props);
             toggleModale(false); // permet de fermer la modale
         } else {
             console.error('Erreur lors de la mise à jour de l\'événement :', response.statusText);
         }
     } catch (error) {
+        console.log('name : '+ props.selectedEvent.attributes.eventName);
+        console.log('photo : '+ props.selectedEvent.attributes.eventImg.data);
         console.error('Erreur lors de la mise à jour de l\'événement :', error.message);
     }
 };
@@ -130,7 +165,6 @@ onMounted(() => {
         nextTick(() => {
             document.querySelector('.modale').focus();
         });
-
         if (props.selectedEvent.attributes.eventHour) {
             const eventHour = new Date(`1970-01-01T${props.selectedEvent.attributes.eventHour}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             props.selectedEvent.attributes.eventHour = eventHour;

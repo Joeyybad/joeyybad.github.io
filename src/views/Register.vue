@@ -67,6 +67,7 @@ import { registerCheck } from '@/assets/script/RegisterCheck';
 
 const register = async () => {
   if (!registerCheck()) {
+    console.log('!registerCheck');
     return; // Arrêter la fonction si une erreur est détectée dans les données du formulaire
   }
 
